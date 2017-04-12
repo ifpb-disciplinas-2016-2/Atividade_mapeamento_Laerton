@@ -25,8 +25,8 @@ public class Movimento {
     private LancamentoType tipo;
     private double valor;
 
-    public Movimento(long id, Conta conta, LancamentoType tipo, double valor) {
-        this.id = id;
+    public Movimento( Conta conta, LancamentoType tipo, double valor) {
+        
         this.conta = conta;
         this.tipo = tipo;
         this.valor = valor;

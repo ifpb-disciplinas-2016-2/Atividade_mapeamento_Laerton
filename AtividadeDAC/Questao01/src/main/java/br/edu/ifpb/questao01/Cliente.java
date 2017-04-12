@@ -7,11 +7,14 @@ package br.edu.ifpb.questao01;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -22,14 +25,24 @@ public class Cliente implements Serializable{
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
     private String nome, cpf, rg, endereco, bairro, cidade, email, telefone;
+    @Temporal(TemporalType.DATE)
     private LocalDate dtnascimento;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Conta conta;
-    private String login;
+    private String login, senha;
     
     public Cliente() {
     }   
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    
     public Conta getConta() {
         return conta;
     }

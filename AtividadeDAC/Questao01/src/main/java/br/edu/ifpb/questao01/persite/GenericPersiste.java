@@ -61,7 +61,7 @@ public class GenericPersiste<T> {
             Logger.getLogger(GenericPersiste.class.getName()).log(Level.SEVERE, null, ex);
         }
         em.getTransaction().begin();
-        em.remove(f);
+        em.remove(em.merge(f));
         em.getTransaction().commit();
         em.close();
         emf.close();

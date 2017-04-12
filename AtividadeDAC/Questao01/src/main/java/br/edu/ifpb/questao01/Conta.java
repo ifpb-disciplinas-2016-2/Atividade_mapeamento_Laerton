@@ -8,6 +8,7 @@ package br.edu.ifpb.questao01;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,20 +25,31 @@ import javax.persistence.OneToMany;
 @Entity
 public class Conta implements Serializable{
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private long codigo;
     private long numero, agencia, dvconta, dvagencia;
     private double saldo;
     private String senha;
     
+    
     @Enumerated(EnumType.STRING)
     private ContaType tipo;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "conta")
     private List<Movimento> movimentos = new LinkedList<Movimento>();
     
     public Conta() {
     }
 
+    public Conta(long numero, long agencia, long dvconta, long dvagencia, String senha, ContaType tipo) {
+        this.numero = numero;
+        this.agencia = agencia;
+        this.dvconta = dvconta;
+        this.dvagencia = dvagencia;
+        this.senha = senha;
+        this.tipo = tipo;
+    }
+
+    
     
     public void addMovimento (Movimento mov){
         mov.setConta(this);
@@ -57,11 +69,11 @@ public class Conta implements Serializable{
     }
     
     
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
