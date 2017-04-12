@@ -8,6 +8,7 @@
     <modules>
         <module>../../../../NetBeansProjects/Atividade_JPA3</module>
         <module>Questao03</module>
+        <module>Atividade_JPA3</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
